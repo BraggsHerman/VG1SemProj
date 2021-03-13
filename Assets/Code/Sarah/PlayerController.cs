@@ -11,6 +11,7 @@ namespace Sarah
         // Outlets - sibling components (Transform, SpriteRenderer)
         Rigidbody2D _rigidbody2D;
         private SpriteRenderer sprite;
+        private Animator _animator;
     
         // Configuration - settings (max health, speed)
     
@@ -24,8 +25,28 @@ namespace Sarah
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             sprite = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
         }
-        
+
+        private void FixedUpdate()
+        {
+            if (Math.Abs(_rigidbody2D.velocity.magnitude) > 0)
+            {
+                if (_rigidbody2D.velocity.y > Math.Abs(_rigidbody2D.velocity.x))
+                {
+                    _animator.SetInteger("Status", 2);
+                }
+                else
+                {
+                    _animator.SetInteger("Status", 1);
+                }
+            }
+            else
+            {
+                _animator.SetInteger("Status", 0);
+            }
+        }
+
 
         // Update is called once per frame
         void Update()

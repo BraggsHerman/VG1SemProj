@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -30,6 +30,8 @@ namespace Sarah
         private float attackRestTime;
         public float idleSpeed;
         public float chaseSpeed;
+        public float damage;
+        public float attackDelay;
 
         // State Tracking
         private Direction direction;
@@ -38,6 +40,7 @@ namespace Sarah
         private Vector2 lastPosition;
         private int stuckCounter;
         private Vector2 dir;
+        private bool readyToAttack;
 
         //Methods
         void Start()
@@ -71,6 +74,7 @@ namespace Sarah
             _player = FindObjectOfType<PlayerController>().transform;
             lastPosition = transform.position;
             stuckCounter = 0;
+            readyToAttack = true;
         }
         
         void Update()
@@ -123,6 +127,23 @@ namespace Sarah
         void AttackPlayer()
         {
             // Attack player
+
+            PlayerController player;
+            if (player = _player.gameObject.GetComponent<PlayerController>())
+            {
+                player.TakeDamage(damage);
+                readyToAttack = false;
+                StartCoroutine("AttackTimer");
+            }
+            
+            
+        }
+        
+        IEnumerator AttackTimer()
+        {
+            yield return new WaitForSeconds(attackDelay);
+
+            readyToAttack = true;
         }
 
         void IdleWalk()
@@ -313,22 +334,22 @@ namespace Sarah
             RaycastHit2D[] sightHitList3 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
             RaycastHit2D[] sightHitList4 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
             RaycastHit2D[] sightHitList5 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
-            //Debug.DrawRay(transform.position, dir * sightRange, Color.green);
-            //Debug.DrawRay(transform.position, diagonalDir1 * sightRange/2, Color.green);
-            //Debug.DrawRay(transform.position, diagonalDir2 * sightRange/2, Color.green);
-            //Debug.DrawRay(transform.position, diagonalDir3 * sightRange/4, Color.green);
-            //Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);
+            Debug.DrawRay(transform.position, dir * sightRange, Color.green);
+            Debug.DrawRay(transform.position, diagonalDir1 * sightRange/2, Color.green);
+            Debug.DrawRay(transform.position, diagonalDir2 * sightRange/2, Color.green);
+            Debug.DrawRay(transform.position, diagonalDir3 * sightRange/4, Color.green);
+            Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);
             
             RaycastHit2D[] attackHitList = { };
             if (direction == Direction.Left || direction == Direction.Right)
             {
                 attackHitList = Physics2D.RaycastAll(transform.position, dir, attackHorizRange);
-                //Debug.DrawRay(transform.position, dir * attackHorizRange, Color.red);
+                Debug.DrawRay(transform.position, dir * attackHorizRange, Color.red);
             }
             else
             {
                 attackHitList = Physics2D.RaycastAll(transform.position, dir, attackVertRange);
-                //Debug.DrawRay(transform.position, dir * attackVertRange, Color.red);
+                Debug.DrawRay(transform.position, dir * attackVertRange, Color.red);
             }
             
             foreach (RaycastHit2D sightHit in sightHitList)
@@ -399,7 +420,7 @@ namespace Sarah
                 }
             }
             
-            if (playerInAttackRange)
+            if (playerInAttackRange && readyToAttack)
             {
                 AttackPlayer();
                 return true;

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Sarah
 {
@@ -14,12 +16,16 @@ namespace Sarah
         private Animator _animator;
         public Transform[] itemSpawners;
         public GameObject itemPrefab;
+        public Image healthBarImage;
 
         // Configuration - settings (max health, speed)
         public float speed;
+        public float maxHealth;
 
         // State Tracking - current state of things (health, current weapon)
         public bool itemAvailable;
+        private int status;
+        public float health;
     
         // Methods
         
@@ -31,31 +37,27 @@ namespace Sarah
             _animator = GetComponent<Animator>();
             SpawnItem();
             itemAvailable = true;
+            status = 0;
+            health = maxHealth;
         }
 
         private void FixedUpdate()
         {
-            if (Math.Abs(_rigidbody2D.velocity.magnitude) > 0)
-            {
-                if (_rigidbody2D.velocity.y > Math.Abs(_rigidbody2D.velocity.x))
-                {
-                    _animator.SetInteger("Status", 2);
-                }
-                else
-                {
-                    _animator.SetInteger("Status", 1);
-                }
-            }
-            else
-            {
-                _animator.SetInteger("Status", 0);
-            }
+            _animator.SetInteger("PrevStatus", status);
+            CheckVelocity();
+            _animator.SetInteger("Status", status);
         }
 
 
         // Update is called once per frame
         void Update()
         {
+            // In future, add something to indicate loss
+            if (health <= 0)
+            {
+                Die();
+            }
+            
             // Move Player Left
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -87,6 +89,10 @@ namespace Sarah
             {
                 SpawnItem();
             }
+            
+            _animator.SetInteger("PrevStatus", status);
+            CheckVelocity();
+            _animator.SetInteger("Status", status);
         }
 
         private void SpawnItem()
@@ -97,6 +103,48 @@ namespace Sarah
             Instantiate(itemPrefab, randomSpawner.position, Quaternion.identity);
 
             itemAvailable = true;
+        }
+
+        void CheckVelocity()
+        {
+            Vector2 velocity = _rigidbody2D.velocity;
+            float x = velocity.x;
+            float y = velocity.y;
+            if (velocity.sqrMagnitude > 0.1f)
+            {
+                if (y > 0 && y > Math.Abs(x))
+                {
+                    status = 1;
+                }
+                else if (y < 0 && Math.Abs(y) > Math.Abs(x))
+                {
+                    status = 3;
+                }
+                else
+                {
+                    status = 2;
+                }
+            }
+            else
+            {
+                status = 0;
+            }
+        }
+
+        public void TakeDamage(float damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0)
+            {
+                Die();
+            }
+
+            healthBarImage.fillAmount = health / maxHealth;
+        }
+
+        void Die()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

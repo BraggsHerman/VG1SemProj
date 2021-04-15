@@ -134,11 +134,22 @@ namespace Sarah
         public void TakeDamage(float damageAmount)
         {
             health -= damageAmount;
+            UpdateHealthBar();
             if (health <= 0)
             {
                 Die();
             }
+           
+        }
 
+        public void RegenHealth(float amount)
+        {
+            health = Math.Min(health + amount, maxHealth);
+            UpdateHealthBar();
+        }
+
+        private void UpdateHealthBar()
+        {
             healthBarImage.fillAmount = health / maxHealth;
         }
 

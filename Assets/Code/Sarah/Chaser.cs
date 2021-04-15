@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -13,6 +14,7 @@ namespace Sarah
         private Rigidbody2D _rigidbody;
         private SpriteRenderer _sprite;
         private Transform _player;
+        private Animator _animator;
         
         // Configuration
         enum Direction
@@ -41,6 +43,7 @@ namespace Sarah
         private int stuckCounter;
         private Vector2 dir;
         private bool readyToAttack;
+        private int status;
 
         //Methods
         void Start()
@@ -70,6 +73,11 @@ namespace Sarah
                     dir = transform.right;
                     break;
             }
+
+            _animator = GetComponent<Animator>();
+            status = (randomDirection < 2 ? randomDirection : 2);
+            _animator.SetInteger("Status", status);
+            
             _sprite = GetComponent<SpriteRenderer>();
             _player = FindObjectOfType<PlayerController>().transform;
             lastPosition = transform.position;
@@ -86,17 +94,17 @@ namespace Sarah
                 if (direction == Direction.Left || direction == Direction.Right)
                 {
                     wallHitList = Physics2D.RaycastAll(transform.position, dir, wallHorizRange);
-                    //Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
+                    Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
                 }
                 else
                 {
                     wallHitList = Physics2D.RaycastAll(transform.position, dir, wallVertRange);
-                    //Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
+                    Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
                 }
 
                 foreach (RaycastHit2D wallHit in wallHitList)
                 {
-                    if (wallHit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
+                    if (wallHit.collider.gameObject.layer == LayerMask.NameToLayer("Wall") || (wallHit.collider.gameObject != this.gameObject && wallHit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")))
                     {
                         ChangeDirection();
                     }
@@ -127,16 +135,14 @@ namespace Sarah
         void AttackPlayer()
         {
             // Attack player
-
             PlayerController player;
             if (player = _player.gameObject.GetComponent<PlayerController>())
             {
                 player.TakeDamage(damage);
                 readyToAttack = false;
                 StartCoroutine("AttackTimer");
+                ChangeDirection();
             }
-            
-            
         }
         
         IEnumerator AttackTimer()
@@ -232,44 +238,33 @@ namespace Sarah
             while (!validPath && checksLeft > 0)
             {
                 --checksLeft;
-                int choice = UnityEngine.Random.Range(1, 5);
+                int choice = UnityEngine.Random.Range(0, 4);
                 switch (choice)
                 {
-                    case 1:
+                    case 0:
                         validPath = freeAbove;
                         direction = Direction.Up;
                         dir = transform.up;
                         break;
-                    case 2:
+                    case 1:
                         validPath = freeBelow;
                         direction = Direction.Down;
                         dir = -transform.up;
                         break;
-                    case 3:
+                    case 2:
                         validPath = freeLeft;
                         direction = Direction.Left;
                         dir = -transform.right;
                         break;
-                    case 4:
+                    case 3:
                         validPath = freeRight;
                         direction = Direction.Right;
                         dir = transform.right;
                         break;
                 }
+                status = (choice < 2 ? choice : 2);
             }
-            
-            /*
-            RaycastHit2D wallAbove = Physics2D.Raycast(transform.position, transform.up, wallVertRange);
-            RaycastHit2D wallBelow = Physics2D.Raycast(transform.position, -transform.up, wallVertRange);
-            RaycastHit2D wallLeft = Physics2D.Raycast(transform.position, -transform.right, wallHorizRange);
-            RaycastHit2D wallRight = Physics2D.Raycast(transform.position, transform.right, wallHorizRange);
-            
-            // Checking if there's a wall in any direction
-            bool freeAbove = (wallAbove.collider == null);
-            bool freeBelow = (wallBelow.collider == null);
-            bool freeLeft = (wallLeft.collider == null);
-            bool freeRight = (wallRight.collider == null);
-            */
+            _animator.SetInteger("Status", status);
         }
 
         void CheckIfStuck()
@@ -295,8 +290,6 @@ namespace Sarah
         {
             // Check if player is in sight or attack range
             playerInSightRange = false;
-            playerInAttackRange = false;
-            
             Vector2 diagonalDir1 = transform.up;
             Vector2 diagonalDir2 = transform.up;
             Vector2 diagonalDir3 = transform.up;
@@ -339,19 +332,7 @@ namespace Sarah
             Debug.DrawRay(transform.position, diagonalDir2 * sightRange/2, Color.green);
             Debug.DrawRay(transform.position, diagonalDir3 * sightRange/4, Color.green);
             Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);
-            
-            RaycastHit2D[] attackHitList = { };
-            if (direction == Direction.Left || direction == Direction.Right)
-            {
-                attackHitList = Physics2D.RaycastAll(transform.position, dir, attackHorizRange);
-                Debug.DrawRay(transform.position, dir * attackHorizRange, Color.red);
-            }
-            else
-            {
-                attackHitList = Physics2D.RaycastAll(transform.position, dir, attackVertRange);
-                Debug.DrawRay(transform.position, dir * attackVertRange, Color.red);
-            }
-            
+
             foreach (RaycastHit2D sightHit in sightHitList)
             {
                 if (sightHit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -396,6 +377,7 @@ namespace Sarah
                     break;
                 }
             }
+
             foreach (RaycastHit2D sightHit in sightHitList5)
             {
                 if (sightHit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -408,57 +390,38 @@ namespace Sarah
                 }
             }
 
-            foreach (RaycastHit2D attackHit in attackHitList)
-            {
-                if (attackHit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-                {
-                    playerInAttackRange = true;
-                }
-                else if (attackHit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
-                {
-                    break;
-                }
-            }
-            
-            if (playerInAttackRange && readyToAttack)
-            {
-                AttackPlayer();
-                return true;
-            } 
-            else if (playerInSightRange)
+            if (playerInSightRange)
             {
                 ChasePlayer();
                 return true;
             }
 
             return false;
-            
-            /*
-            RaycastHit2D sightHit = Physics2D.Raycast(transform.position, dir, sightRange, LayerMask.NameToLayer("Player"));
-            Debug.DrawRay(transform.position, dir * sightRange, Color.green);
-            
-            RaycastHit2D wallHit;
-            RaycastHit2D attackHit;
-            if (direction == Direction.Left || direction == Direction.Right)
-            {
-                wallHit = Physics2D.Raycast(transform.position, dir, wallHorizRange, LayerMask.NameToLayer("Walls"));
-                Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
-                
-                attackHit = Physics2D.Raycast(transform.position, dir, attackHorizRange, LayerMask.NameToLayer("Player"));
-                Debug.DrawRay(transform.position, dir * attackHorizRange, Color.red);
-            }
-            else
-            {
-                wallHit = Physics2D.Raycast(transform.position, dir, wallVertRange, LayerMask.NameToLayer("Walls"));
-                Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
-                
-                attackHit = Physics2D.Raycast(transform.position, dir, attackVertRange, LayerMask.NameToLayer("Player"));
-                Debug.DrawRay(transform.position, dir * attackVertRange, Color.red);
-            }
+        }
 
-            playerInSightRange = (sightHit.collider != null);
-            playerInAttackRange = (attackHit.collider != null);
-            */
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player") && readyToAttack)
+            {
+                playerInAttackRange = true;
+                AttackPlayer();
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                playerInAttackRange = false;
+            }
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player") && readyToAttack)
+            {
+                AttackPlayer();
+            }
         }
     }
 }

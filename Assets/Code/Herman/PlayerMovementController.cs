@@ -17,12 +17,17 @@ public class PlayerMovementController : MonoBehaviour
     public float timeInvincible = 2.0f;
     bool isInvincible;
     float invincibleTimer;
+
+    public Animator anim;
+ 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,6 +45,9 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
+        anim.SetFloat("Horizontal", horizontal);
+        anim.SetFloat("Vertical", vertical);
+
     }
 
     private void FixedUpdate()
@@ -50,6 +58,8 @@ public class PlayerMovementController : MonoBehaviour
         transform.position = position;
 
         rb.MovePosition(position);
+
+     
     }
 
     public void ChangeHealth(int amount)

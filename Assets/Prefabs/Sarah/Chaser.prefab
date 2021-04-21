@@ -140,8 +140,8 @@ MonoBehaviour:
   attackHorizRange: 0.4
   wallVertRange: 1
   wallHorizRange: 1
-  idleSpeed: 5
-  chaseSpeed: 8
+  idleSpeed: 4
+  chaseSpeed: 6
   damage: 10
   attackDelay: 0.5
 --- !u!95 &-5131964200730103143

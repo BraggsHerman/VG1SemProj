@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     public int maxHealth = 5;
+    public SpriteRenderer spriteRenderer;
 
     public int health { get { return currentHealth; } }
     int currentHealth;
@@ -19,6 +20,7 @@ public class PlayerMovementController : MonoBehaviour
     float invincibleTimer;
 
     public Animator anim;
+
  
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,8 @@ public class PlayerMovementController : MonoBehaviour
         currentHealth = maxHealth;
 
         anim = GetComponent<Animator>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -35,6 +39,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        
 
         if (isInvincible) 
         {
@@ -45,8 +51,9 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
-        anim.SetFloat("Horizontal", horizontal);
-        anim.SetFloat("Vertical", vertical);
+ 
+        
+    
 
     }
 
@@ -59,7 +66,8 @@ public class PlayerMovementController : MonoBehaviour
 
         rb.MovePosition(position);
 
-     
+
+        
     }
 
     public void ChangeHealth(int amount)

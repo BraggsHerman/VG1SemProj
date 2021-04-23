@@ -28,18 +28,19 @@ namespace test
 
         void OnCollisionEnter2D(Collision2D other)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             // Only explode on Boss
-            if (other.gameObject.GetComponent<Boss>())
+            if (other.gameObject.GetComponent<PlayerController>())
             {
 
-                Destroy(gameObject);
-                // Create an explosion and destroy it soon after 
-                GameObject explosion = Instantiate(GameController.instance.explosionPrefab, transform.position, Quaternion.identity);
-                Destroy(explosion, 0.25f);
+                return;
 
                 
             }
+            Destroy(gameObject);
+            // Create an explosion and destroy it soon after 
+            GameObject explosion = Instantiate(GameController.instance.explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, 0.25f);
         }
     }
 }

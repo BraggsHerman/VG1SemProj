@@ -245,8 +245,8 @@ namespace test
         {
             GameController.instance.youLose = true;
             GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<CapsuleCollider2D>().enabled = false;
-
+            Destroy(GetComponent<CapsuleCollider2D>());
+            GetComponent<PopUpLogic>().playerDied();
         }
 
         public void EarnPoints(int pointAmount)

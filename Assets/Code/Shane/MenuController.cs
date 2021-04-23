@@ -9,7 +9,7 @@ namespace test
     {
         public static MenuController instance;
         public float delay = 5;
-        public string NewLevel = "Test";
+        public string NewLevel = "DungeonPerson";
 
         //Methods
         void Awake()
@@ -69,7 +69,7 @@ namespace test
 
         public void LoadLevel()
         {
-            SceneManager.LoadScene("Test");
+            SceneManager.LoadScene(NewLevel);
         }
         //Outlets
         public GameObject mainMenu;

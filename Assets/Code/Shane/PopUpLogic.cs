@@ -9,7 +9,8 @@ namespace test
         public string instructions;
         public string popUp;
         public int fontSize;
-        bool isInRange = false;
+
+        bool player;
 
         
 
@@ -19,8 +20,18 @@ namespace test
             
         }
 
+        public void playerDied()
+        {
+            PopUpSystem pop = GameObject.FindGameObjectWithTag("GameController").GetComponent<PopUpSystem>();
+            pop.PopUp(popUp, fontSize);
+        }
+
         void OnTriggerEnter2D(Collider2D other)
         {
+            if (gameObject.name == "Player")
+            {
+                return; //Do nothing.
+            }
             if (other.gameObject.GetComponent<PlayerController>())
             {
                 if (gameObject.tag == "BossDoor")
@@ -44,6 +55,10 @@ namespace test
                     }
                     
                     GameController.instance.askedForIt = true;
+                }
+                else if (gameObject.name == "Boss")
+                {
+                    return;
                 }
                 else
                 {
@@ -71,7 +86,6 @@ namespace test
         {
             if (other.gameObject.GetComponent<PlayerController>())
             {
-                isInRange = false;
                 PopUpSystem pop = GameObject.FindGameObjectWithTag("GameController").GetComponent<PopUpSystem>();
                 pop.closePopUp();
                 if (gameObject.tag == "FirstClue")
@@ -82,7 +96,10 @@ namespace test
                 {
                     Destroy(gameObject);
                 }
-
+                if (gameObject.name == "InstructionPopUp")
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 

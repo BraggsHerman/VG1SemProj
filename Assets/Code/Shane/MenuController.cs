@@ -69,7 +69,7 @@ namespace test
 
         public void LoadLevel()
         {
-            SceneManager.LoadScene(NewLevel);
+            SceneManager.LoadScene("DungeonPerson");
         }
         //Outlets
         public GameObject mainMenu;
@@ -92,7 +92,7 @@ namespace test
         {
             yield return new WaitForSeconds(delay);
             
-            SceneManager.LoadScene(NewLevel);
+            SceneManager.LoadScene("DungeonPerson");
         }
     }
 }

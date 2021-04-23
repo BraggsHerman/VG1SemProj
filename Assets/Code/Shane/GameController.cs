@@ -39,7 +39,7 @@ namespace test
             {
                 StartCoroutine(MenuController.instance.LoadLevelAfterDelay(5));
                 print("Resetting level...");
-                MenuController.instance.NewLevel = "Test";
+                MenuController.instance.NewLevel = "DungeonPerson";
             }
 
         }

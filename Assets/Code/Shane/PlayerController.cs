@@ -181,9 +181,10 @@ namespace test
         }
         void OnCollisionEnter2D(Collision2D collision)
         {
+            print("here");
             if (collision.gameObject.GetComponent<EnemyController>())
             {
-                
+                print("here2");
                 TakeDamage(10f);
             }
             if (collision.gameObject.GetComponent<Queen>())

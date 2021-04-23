@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fire
+  - BowEquip
+  - QueenCageTemp
+  - FirstClue
+  - AimPivot
+  - BossHealth
+  - FirstDoor
+  - TrapDoor
+  - BossCageTemp
+  - BossDoor
+  - Bow
+  - BossBeetle
+  - BossDoor2
+  - SpecialCrate
   layers:
   - Default
   - TransparentFX
@@ -13,10 +27,10 @@ TagManager:
   - UI
   - Floor
   - Wall
+  - PlayerProjectile
   - Player
   - Enemy
   - Item
-  - 
   - 
   - 
   - 

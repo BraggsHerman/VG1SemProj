@@ -1,35 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
-    public float displayTime = 4.0f;
-    public GameObject dialogBox;
-    float timerDisplay;
-    // Start is called before the first frame update
+    public bool canInteract = false;
+    public GameObject canvas;
+    public int cluesFound = 0;
     void Start()
     {
-        dialogBox.SetActive(false);
-        timerDisplay = -1.0f;
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (timerDisplay >= 0)
+        if (canInteract )
         {
-            timerDisplay -= Time.deltaTime;
-            if (timerDisplay < 0)
-            {
-                dialogBox.SetActive(false);
-            }
+            Interact();
         }
     }
-    public void DisplayDialog()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        timerDisplay = displayTime;
-        dialogBox.SetActive(true);
+        if(other.tag == "Player")
+        {
+            canInteract = true;
+
+        }
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            canInteract = false;
+        }
+    }
+
+    public void Interact()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            canvas.SetActive(true);
+            cluesFound++;
+        }
+        if(cluesFound >= 3)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+
+    }
+
+    public void BringCanvas()
+    {
+        
+    }
 }

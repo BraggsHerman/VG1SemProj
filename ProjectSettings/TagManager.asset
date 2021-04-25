@@ -25,7 +25,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Floor
+  - Ground
   - Wall
   - PlayerProjectile
   - Player

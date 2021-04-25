@@ -9835,6 +9835,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -0.15625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 1.03125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 0.90625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 1.03125
+      objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087677, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Name
       value: Player [Shelby]

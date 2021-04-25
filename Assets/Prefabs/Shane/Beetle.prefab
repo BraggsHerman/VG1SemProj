@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3862248166199893665}
   - component: {fileID: 3862248166199893664}
   - component: {fileID: 3862248166199893679}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Beetle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.94285715, y: 1.3142858}
+  m_Size: {x: 1.56, y: 2.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,7 +96,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.015082536, y: 0.0023994446}

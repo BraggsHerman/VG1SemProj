@@ -181,9 +181,10 @@ namespace test
         }
         void OnCollisionEnter2D(Collision2D collision)
         {
+            print("here");
             if (collision.gameObject.GetComponent<EnemyController>())
             {
-                
+                print("here2");
                 TakeDamage(10f);
             }
             if (collision.gameObject.GetComponent<Queen>())
@@ -245,8 +246,8 @@ namespace test
         {
             GameController.instance.youLose = true;
             GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<CapsuleCollider2D>().enabled = false;
-
+            Destroy(GetComponent<CapsuleCollider2D>());
+            GetComponent<PopUpLogic>().playerDied();
         }
 
         public void EarnPoints(int pointAmount)

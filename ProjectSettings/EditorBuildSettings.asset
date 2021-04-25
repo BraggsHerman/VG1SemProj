@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sarah/Daycare Level 1.unity
     guid: 5e238dfa946c4455c99e20ff5a1b5e07
+  - enabled: 1
+    path: Assets/Scenes/Shane/DungeonPerson.unity
+    guid: 49f43a6039a906242baa54a31fe8dca8
   m_configObjects: {}

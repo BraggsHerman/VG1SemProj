@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace test
+namespace Shane
 {
     public class CameraController : MonoBehaviour
     {

@@ -40,7 +40,7 @@ public class PlayerMovementController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        
+        Debug.Log(horizontal);
 
         if (isInvincible) 
         {
@@ -51,9 +51,39 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
- 
-        
-    
+        //flipping for direction
+        if(vertical < 0 || horizontal < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
+
+
+        //animation stuff
+        if(horizontal > 0)
+        {
+            anim.SetInteger("Status", 3);
+        }
+   
+        if(vertical > 0)
+        {
+            anim.SetInteger("Status", 1);
+
+        }
+
+        if(vertical < 0)
+        {
+            anim.SetInteger("Status", 2);
+        }
+
+        if (horizontal == 0 && vertical == 0)
+        {
+            anim.SetInteger("Status", 0);
+        }
+
 
     }
 
@@ -87,4 +117,6 @@ public class PlayerMovementController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
     }
+
+
 }

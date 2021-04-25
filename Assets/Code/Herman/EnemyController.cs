@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
 
     Rigidbody2D rb;
 
-    public float changeTime = 3.0f;
+    public float changeTime;
     float timer;
     int direction = 1;
 
@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+         changeTime = Random.Range(3f, 15f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         timer = changeTime;
@@ -74,6 +75,11 @@ public class EnemyController : MonoBehaviour
         {
             player.ChangeHealth(-1);
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
 }

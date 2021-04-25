@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -20,8 +21,9 @@ public class PlayerMovementController : MonoBehaviour
     float invincibleTimer;
 
     public Animator anim;
+    
 
- 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,10 +39,21 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float movementSpeed = rb.velocity.magnitude;
+        anim.SetFloat("Speed", movementSpeed);
+        if(movementSpeed > 0.1f) 
+        {
+            anim.SetFloat("MvementX", rb.velocity.x);
+            anim.SetFloat("MovementY", rb.velocity.y);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            anim.SetTrigger("Attack");
+        }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        Debug.Log(horizontal);
+       // Debug.Log(horizontal);
 
         if (isInvincible) 
         {
@@ -62,26 +75,9 @@ public class PlayerMovementController : MonoBehaviour
         }
 
 
-        //animation stuff
-        if(horizontal > 0)
+    if(currentHealth <= 0)
         {
-            anim.SetInteger("Status", 3);
-        }
-   
-        if(vertical > 0)
-        {
-            anim.SetInteger("Status", 1);
-
-        }
-
-        if(vertical < 0)
-        {
-            anim.SetInteger("Status", 2);
-        }
-
-        if (horizontal == 0 && vertical == 0)
-        {
-            anim.SetInteger("Status", 0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
 
@@ -96,27 +92,32 @@ public class PlayerMovementController : MonoBehaviour
 
         rb.MovePosition(position);
 
-
-        
     }
+
+ 
 
     public void ChangeHealth(int amount)
     {
        
         if(amount > 0)
         {
-            if (isInvincible)
-           
-                return;
-            
+            if (isInvincible) {
+                  
                 isInvincible = true;
                 invincibleTimer = timeInvincible;
+            }
+            ;
+           
+                
+
             
         } 
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
     }
+
+
 
 
 }

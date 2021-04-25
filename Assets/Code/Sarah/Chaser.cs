@@ -15,6 +15,9 @@ namespace Sarah
         private SpriteRenderer _sprite;
         private Transform _player;
         private Animator _animator;
+        private AudioSource _audioSource;
+        public AudioClip seePlayerSound;
+        public AudioClip biteSound;
         
         // Configuration
         enum Direction
@@ -34,6 +37,7 @@ namespace Sarah
         public float chaseSpeed;
         public float damage;
         public float attackDelay;
+        public bool firstSpotPlayer;
 
         // State Tracking
         private Direction direction;
@@ -49,6 +53,7 @@ namespace Sarah
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _audioSource = GetComponent<AudioSource>();
             int randomDirection = UnityEngine.Random.Range(0, 4);
             switch (randomDirection)
             {
@@ -83,6 +88,7 @@ namespace Sarah
             lastPosition = transform.position;
             stuckCounter = 0;
             readyToAttack = true;
+            firstSpotPlayer = true;
         }
         
         void Update()
@@ -94,12 +100,12 @@ namespace Sarah
                 if (direction == Direction.Left || direction == Direction.Right)
                 {
                     wallHitList = Physics2D.RaycastAll(transform.position, dir, wallHorizRange);
-                    // Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
+                     Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
                 }
                 else
                 {
                     wallHitList = Physics2D.RaycastAll(transform.position, dir, wallVertRange);
-                    // Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
+                     Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
                 }
 
                 foreach (RaycastHit2D wallHit in wallHitList)
@@ -117,6 +123,12 @@ namespace Sarah
 
         void ChasePlayer()
         {
+            if (firstSpotPlayer)
+            {
+                _audioSource.PlayOneShot(seePlayerSound);
+                firstSpotPlayer = false;
+            }
+            
             Vector2 playerPos = _player.position;
             Vector2 enemyPos = transform.position;
             
@@ -131,6 +143,7 @@ namespace Sarah
             PlayerController player;
             if (player = _player.gameObject.GetComponent<PlayerController>())
             {
+                _audioSource.PlayOneShot(biteSound);
                 player.TakeDamage(damage);
                 readyToAttack = false;
                 StartCoroutine("AttackTimer");
@@ -147,6 +160,7 @@ namespace Sarah
 
         void IdleWalk()
         {
+            firstSpotPlayer = true;
             _sprite.flipX = direction == Direction.Left; 
             _rigidbody.AddForce(dir * idleSpeed * Time.deltaTime, ForceMode2D.Impulse);
         }
@@ -320,11 +334,11 @@ namespace Sarah
             RaycastHit2D[] sightHitList3 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
             RaycastHit2D[] sightHitList4 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
             RaycastHit2D[] sightHitList5 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
-            /*Debug.DrawRay(transform.position, dir * sightRange, Color.green);
+            Debug.DrawRay(transform.position, dir * sightRange, Color.green);
             Debug.DrawRay(transform.position, diagonalDir1 * sightRange/2, Color.green);
             Debug.DrawRay(transform.position, diagonalDir2 * sightRange/2, Color.green);
             Debug.DrawRay(transform.position, diagonalDir3 * sightRange/4, Color.green);
-            Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);*/
+            Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);
 
             foreach (RaycastHit2D sightHit in sightHitList)
             {

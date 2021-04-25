@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 namespace Sarah
@@ -17,6 +18,7 @@ namespace Sarah
         public Transform[] itemSpawners;
         public GameObject itemPrefab;
         public Image healthBarImage;
+        public Text bottleScoreText;
 
         // Configuration - settings (max health, speed)
         public float speed;
@@ -26,10 +28,9 @@ namespace Sarah
         public bool itemAvailable;
         private int status;
         public float health;
+        public int bottleScore;
     
         // Methods
-        
-        // Start is called before the first frame update
         void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -39,6 +40,7 @@ namespace Sarah
             itemAvailable = true;
             status = 0;
             health = maxHealth;
+            bottleScore = 0;
         }
 
         private void FixedUpdate()
@@ -47,9 +49,7 @@ namespace Sarah
             CheckVelocity();
             _animator.SetInteger("Status", status);
         }
-
-
-        // Update is called once per frame
+        
         void Update()
         {
             // In future, add something to indicate loss
@@ -146,11 +146,18 @@ namespace Sarah
         {
             health = Math.Min(health + amount, maxHealth);
             UpdateHealthBar();
+            UpdateBottleScore();
         }
 
         private void UpdateHealthBar()
         {
             healthBarImage.fillAmount = health / maxHealth;
+        }
+
+        void UpdateBottleScore()
+        {
+            ++bottleScore;
+            bottleScoreText.text = ": " + bottleScore;
         }
 
         void Die()

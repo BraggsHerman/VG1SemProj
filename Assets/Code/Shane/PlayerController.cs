@@ -49,7 +49,7 @@ namespace test
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
 
-            GameObject.FindGameObjectWithTag("AimPivot").SetActive(false);
+            //GameObject.FindGameObjectWithTag("AimPivot").SetActive(false);
 
         }
 
@@ -246,8 +246,8 @@ namespace test
         {
             GameController.instance.youLose = true;
             GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<PlayerController>().enabled = false;
             Destroy(GetComponent<CapsuleCollider2D>());
-            GetComponent<PopUpLogic>().playerDied();
         }
 
         public void EarnPoints(int pointAmount)

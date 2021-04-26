@@ -26,7 +26,7 @@ namespace test {
         {
             if (horizontal)
             {
-                transform.position = new Vector2(Mathf.Sin(GameController.instance.timeElapsed) * 3f, transform.position.y);
+                transform.position = new Vector2(Mathf.Sin(GameController.instance.timeElapsed) * 6f, transform.position.y);
             }
         }
 

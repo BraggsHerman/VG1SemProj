@@ -48,7 +48,7 @@ public class Interactable : MonoBehaviour
         }
         if(cluesFound >= 3)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }
 
 

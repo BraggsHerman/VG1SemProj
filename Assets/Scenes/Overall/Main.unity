@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 542462084}
   - component: {fileID: 542462083}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Exit Option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 1122305540}
   - component: {fileID: 1122305539}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Play Option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

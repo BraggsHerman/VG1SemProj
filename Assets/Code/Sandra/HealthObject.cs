@@ -15,54 +15,7 @@ namespace HighSchool
         //state tracking
        
         public static HealthObject instance;
-        /*   
-               void OnCollisionEnter2D(Collision2D other)
-               {
-                   //check for a component, is the object a projectile if we hit it, destroy
-                   //type game object, compeneent projectile
-                   if (other.gameObject.GetComponent<Projectile>())
-                   {
-                       //target and projectile clean themselves up
-                       Destroy(gameObject);
-                   }
-
-               }
-
-
-
-           //will also incorporate the obstacles to spawn from a spawn point
-
-           public static Obstacle instance;
-           //OUTLETS--> need thm to talk to a few things
-           //need an array of transform
-           public Transform[] spawnPoints;
-           //spawnign random asteroids at the spawnpoints
-           public GameObject[] obstaclePrefabs;
-           public Text textScore;
-           public float maxAsteroidDelay = 2f;
-           public float minAsteroidDelay = 0.2f;
-
-           //State trackign variable
-           public float timeElapsed;
-           //how long till we see another asteroid
-           public float asteroidDelay;
-           public int score;
-
-           void Awake()
-           {
-               instance = this;
-           }
-           void Start()
-           {
-               StartCoroutine("ObstacleSpawnTimer");
-               score = 0;
-
-           }
-
-       }
-   }
-
-   */
+    
 
         //asteroid uses normal physics so ue rigidbody
         Rigidbody2D rigidbody;
@@ -119,10 +72,7 @@ namespace HighSchool
                 Destroy(gameObject);
             }
 
-                void OnBecameInvisible()
-            {
-                Destroy(gameObject);
-            }
+           
         }
     }
 

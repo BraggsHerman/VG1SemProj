@@ -16,7 +16,7 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        if (canInteract )
+        if (canInteract)
         {
             Interact();
         }

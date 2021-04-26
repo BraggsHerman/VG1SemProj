@@ -102,6 +102,12 @@ namespace HighSchool
                 //if obstacles collide w character , it should disappear
                 Destroy(gameObject);
             }
+            if (other.gameObject.GetComponent<ChaserController>())
+            {
+                //if obstacles collide w character , it should disappear
+                Destroy(gameObject);
+            }
+
 
             //if its an asteroid , take damage
             if (other.gameObject.GetComponent<Projectile>())

@@ -9877,7 +9877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2074380923}
-  speed: 4
+  speed: 8
   health: 200
   healthMax: 200
   imageHealthBar: {fileID: 1507266172}
@@ -10513,7 +10513,7 @@ MonoBehaviour:
   keyDown: 115
   keyLeft: 97
   keyRight: 100
-  moveSpeed: 2
+  moveSpeed: 4
   attackZones:
   - {fileID: 2076514190}
   - {fileID: 1778505606}

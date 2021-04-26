@@ -19,6 +19,7 @@ namespace Sarah
         private int nextTime;
         private int minutes;
         private int seconds;
+        private float pauseTime;
         public int endSceneDelay;
         
         // State Tracking
@@ -78,8 +79,9 @@ namespace Sarah
             textTimer.text = minutes + ":" + secStr;
         }
 
-        void PauseGame()
+        public void PauseGame()
         {
+            pauseTime = lastTime + Time.deltaTime;
             isPaused = true;
             PlayerController.instance.isPaused = true;
             foreach (Chaser chaser in chasers)
@@ -88,8 +90,9 @@ namespace Sarah
             }
         }
 
-        void ResumeGame()
+        public void ResumeGame()
         {
+            lastTime = pauseTime;
             isPaused = false;
             PlayerController.instance.isPaused = false;
             foreach (Chaser chaser in chasers)

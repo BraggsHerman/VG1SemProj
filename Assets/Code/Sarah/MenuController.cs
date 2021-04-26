@@ -10,14 +10,12 @@ namespace Sarah
         public static MenuController instance;
         
         // Outlets
-        public GameController _GameController;
         public GameObject mainMenu;
         public GameObject levelMenu;
-        public string nextLevel;
-        
+
         // Configuration
         public float delay = 6;
-        public string newLevel = "DungeonPerson";
+        public string nextLevel = "DungeonPerson";
 
         //Methods
         void Awake()
@@ -31,19 +29,14 @@ namespace Sarah
             ShowMainMenu();
             gameObject.SetActive(true);
             Time.timeScale = 0;
-            //PlayerController.instance.isPaused = true;
-            // ###### call GameController.PauseGame()
+            GameController.instance.PauseGame();
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            
-            /*if (GameController.instance != null)
-            {
-                GameController.instance.Resume()
-            }*/
+            GameController.instance.ResumeGame();
         }
 
         void SwitchMenu(GameObject someMenu)

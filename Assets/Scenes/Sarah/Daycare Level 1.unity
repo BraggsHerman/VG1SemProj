@@ -18074,12 +18074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6290b12dad174085b773032dd2f8300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GameController: {fileID: 1665515134}
   mainMenu: {fileID: 2051136814}
   levelMenu: {fileID: 2078214399}
-  nextLevel: 
   delay: 6
-  newLevel: DungeonPerson
+  nextLevel: '"DungeonPerson"'
 --- !u!1 &1507003650
 GameObject:
   m_ObjectHideFlags: 0

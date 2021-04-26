@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace HighSchool
 {
@@ -15,7 +16,8 @@ namespace HighSchool
         public Image imageHealthBar;
         public static ControlPlayer instance;
         public int jumpsLeft;
-
+        
+      
         //configuration
         //public float moveSpeed;
 
@@ -66,12 +68,6 @@ namespace HighSchool
                 //hypotensue of triangle for shooting
                 Vector3 directionFromPlayerToMouse = mousePositionInWorld - transform.position;
 
-                //trig for angles
-                /*
-                float radiansToMouse = Mathf.Atan2(directionFromPlayerToMouse.y, directionFromPlayerToMouse.x);
-                float angleToMouse = radiansToMouse * Mathf.Rad2Deg;
-                aimPivot.rotation = Quaternion.Euler(0, 0, angleToMouse);
-                */
 
                 //SHOOT, right click is 0, left is 1
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -112,7 +108,9 @@ namespace HighSchool
                     if (health <= 0)
                     {
                         Die();
-                Time.timeScale = 0;
+              
+                //Time.timeScale = 0;  
+                
             }
                     imageHealthBar.fillAmount = health / healthMax;
                 }
@@ -136,17 +134,23 @@ namespace HighSchool
                     GetComponent<Rigidbody2D>().gravityScale = 0;
                     //so if we get shoved by an asteroid, ship will float away
                     GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                     SceneManager.LoadScene("HighSchool");
 
-                }
+        }
             
         
         void OnCollisionEnter2D(Collision2D other)
         {
           
-            //if its an asteroid , take damage
+            
             if (other.gameObject.GetComponent<Obstacle>())
             {
                 TakeDamage(10f);
+            }
+
+            if (other.gameObject.GetComponent<ChaserController>())
+            {
+                TakeDamage(20f);
             }
 
             if (other.gameObject.GetComponent<HealthObject>())

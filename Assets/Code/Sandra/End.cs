@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace HighSchool { 
     public class End : MonoBehaviour
 {
@@ -35,9 +35,10 @@ namespace HighSchool {
 
 
                 PlayerPrefs.DeleteKey("Score");
-                GC.instance.score = 0;
+                //GC.instance.score = 0;
                
                 Time.timeScale = 0;
+                SceneManager.LoadScene("DungeonPerson");
             }
                
 

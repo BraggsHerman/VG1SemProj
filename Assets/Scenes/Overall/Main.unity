@@ -216,9 +216,9 @@ MonoBehaviour:
   welcomeMenu: {fileID: 1924003089}
   levelMenu: {fileID: 1955214203}
   level1: Daycare Level 1
-  level2: DungeonPerson
-  level3: SpaceCruiseLevel
-  level4: HighSchool
+  level2: SpaceCruiseLevel
+  level3: HighSchool
+  level4: DungeonPerson
 --- !u!1 &472802791
 GameObject:
   m_ObjectHideFlags: 0

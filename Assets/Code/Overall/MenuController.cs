@@ -62,21 +62,25 @@ namespace Overall
 
         public void LoadLevel1()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level1);
         }
         
         public void LoadLevel2()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level2);
         }
         
         public void LoadLevel3()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level3);
         }
         
         public void LoadLevel4()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level4);
         }
 

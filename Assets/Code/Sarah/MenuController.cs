@@ -16,7 +16,11 @@ namespace Sarah
         // Configuration
         public float delay = 6;
         public string nextLevel = "DungeonPerson";
-
+        public string level1;
+        public string level2;
+        public string level3;
+        public string level4;
+        
         //Methods
         void Awake()
         {
@@ -47,21 +51,26 @@ namespace Sarah
 
             //Turn on requested menu
             someMenu.SetActive(true);
-
         }
 
         public void ShowMainMenu()
         {
             SwitchMenu(mainMenu);
         }
+        
         public void ShowLevelMenu()
         {
             SwitchMenu(levelMenu);
         }
 
+        public void Restart()
+        {
+            SceneManager.LoadScene(level1);
+        }
+
         public void ResetScore()
         {
-            PlayerPrefs.DeleteKey("Bottle Score");
+            PlayerPrefs.DeleteKey("Level 1 High Score");
             PlayerController.instance.bottleScore = 0;
         }
 
@@ -75,6 +84,21 @@ namespace Sarah
             yield return new WaitForSeconds(delay);
             
             SceneManager.LoadScene(nextLevel);
+        }
+        
+        public void LoadLevel2()
+        {
+            SceneManager.LoadScene(level2);
+        }
+        
+        public void LoadLevel3()
+        {
+            SceneManager.LoadScene(level3);
+        }
+        
+        public void LoadLevel4()
+        {
+            SceneManager.LoadScene(level4);
         }
     }
 }

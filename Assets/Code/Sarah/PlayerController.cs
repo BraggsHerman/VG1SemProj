@@ -181,7 +181,7 @@ namespace Sarah
 
         void Die()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameOverScript.instance.Show();
         }
     }
 }

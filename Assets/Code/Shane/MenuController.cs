@@ -92,7 +92,7 @@ namespace test
         {
             yield return new WaitForSeconds(delay);
             
-            SceneManager.LoadScene("DungeonPerson");
+            SceneManager.LoadScene(NewLevel);
         }
     }
 }

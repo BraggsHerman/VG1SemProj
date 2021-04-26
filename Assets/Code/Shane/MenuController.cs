@@ -40,8 +40,6 @@ namespace test
         {
             //Turn off all menus
             mainMenu.SetActive(false);
-            optionsMenu.SetActive(false);
-            levelMenu.SetActive(false);
 
             //Turn on requested menu
             someMenu.SetActive(true);
@@ -52,29 +50,16 @@ namespace test
         {
             SwitchMenu(mainMenu);
         }
-        public void ShowOptionsMenu()
+
+        public void Exit()
         {
-            SwitchMenu(optionsMenu);
-        }
-        public void ShowLevelMenu()
-        {
-            SwitchMenu(levelMenu);
+            SceneManager.LoadScene("Main");
+
         }
 
-        public void ResetScore()
-        {
-            PlayerPrefs.DeleteKey("Score");
-            PlayerController.instance.score = 0;
-        }
 
-        public void LoadLevel()
-        {
-            SceneManager.LoadScene("DungeonPerson");
-        }
         //Outlets
         public GameObject mainMenu;
-        public GameObject optionsMenu;
-        public GameObject levelMenu;
 
         // Start is called before the first frame update
         void Start()

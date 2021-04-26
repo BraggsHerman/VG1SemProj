@@ -215,10 +215,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   welcomeMenu: {fileID: 1924003089}
   levelMenu: {fileID: 1955214203}
-  level1: '"Daycare Level 1"'
-  level2: '"DungeonPerson"'
-  level3: '"SpaceCruiser"'
-  level4: '"DungeonPerson"'
+  level1: Daycare Level 1
+  level2: DungeonPerson
+  level3: SpaceCruiseLevel
+  level4: HighSchool
 --- !u!1 &472802791
 GameObject:
   m_ObjectHideFlags: 0

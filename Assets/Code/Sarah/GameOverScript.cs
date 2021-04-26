@@ -55,6 +55,7 @@ namespace Sarah
 
         public void LoadNextLevel()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(nextLevel);
         }
 
@@ -72,7 +73,7 @@ namespace Sarah
                 PlayerPrefs.SetInt("Level 1 Best Time Secs", myTime);
                 PlayerPrefs.SetString("Level 1 Best Time", GameController.instance.timeString);
             }
-            if (bestTime > myTime)
+            if (bestTime < myTime)
             {
                 PlayerPrefs.SetInt("Level 1 Best Time Secs", myTime);
                 PlayerPrefs.SetString("Level 1 Best Time", GameController.instance.timeString);

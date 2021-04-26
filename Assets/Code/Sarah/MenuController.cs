@@ -65,7 +65,8 @@ namespace Sarah
 
         public void Restart()
         {
-            SceneManager.LoadScene(level1);
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void ResetScore()
@@ -76,28 +77,25 @@ namespace Sarah
 
         public void LoadLevel()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(nextLevel);
         }
 
-        public IEnumerator LoadLevelAfterDelay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            
-            SceneManager.LoadScene(nextLevel);
-        }
-        
         public void LoadLevel2()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level2);
         }
         
         public void LoadLevel3()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level3);
         }
         
         public void LoadLevel4()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(level4);
         }
     }

@@ -13352,7 +13352,7 @@ MonoBehaviour:
   highScoreText: {fileID: 641235332}
   bestTimeText: {fileID: 1220511870}
   babyCrySound: {fileID: 8300000, guid: 573af5fee82ee419384119e6c28b6706, type: 3}
-  nextLevel: SpaceCruiser
+  nextLevel: SpaceCruiseLevel
   welcomeScene: Main
 --- !u!82 &1277526490
 AudioSource:
@@ -19181,7 +19181,7 @@ MonoBehaviour:
   delay: 6
   nextLevel: '"DungeonPerson"'
   level1: Daycare Level 1
-  level2: SpaceCruiser
+  level2: SpaceCruiseLevel
   level3: HighSchool
   level4: DungeonPerson
 --- !u!1 &1507003650

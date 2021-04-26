@@ -19,12 +19,14 @@ namespace Sarah
         private int nextTime;
         private int minutes;
         private int seconds;
+        public int totalSecs;
         private float pauseTime;
         public int endSceneDelay;
         
         // State Tracking
         private bool gameOver;
         public bool isPaused;
+        public string timeString;
 
         void Awake()
         {
@@ -37,6 +39,7 @@ namespace Sarah
             lastTime = 0;
             nextTime = 1;
             isPaused = false;
+            totalSecs = 0;
         }
         
         void Update()
@@ -50,6 +53,7 @@ namespace Sarah
             if (lastTime > nextTime)
             {
                 ++seconds;
+                ++totalSecs;
                 ++nextTime;
                 print(nextTime);
                 UpdateTime();
@@ -57,8 +61,7 @@ namespace Sarah
             
             if (gameOver)
             {
-                StartCoroutine(MenuController.instance.LoadLevelAfterDelay(endSceneDelay));
-                print("Resetting level...");
+                GameOverScript.instance.Show();
             }
         }
 
@@ -76,7 +79,8 @@ namespace Sarah
                 secStr = "0" + secStr;
             }
 
-            textTimer.text = minutes + ":" + secStr;
+            timeString = minutes + ":" + secStr;
+            textTimer.text = timeString;
         }
 
         public void PauseGame()

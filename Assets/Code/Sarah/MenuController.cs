@@ -70,7 +70,7 @@ namespace Sarah
 
         public void ResetScore()
         {
-            PlayerPrefs.DeleteKey("High Bottle Score");
+            PlayerPrefs.DeleteKey("Level 1 High Score");
             PlayerController.instance.bottleScore = 0;
         }
 

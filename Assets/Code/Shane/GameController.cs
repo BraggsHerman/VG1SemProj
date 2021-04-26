@@ -14,6 +14,7 @@ namespace test
         public bool beatBoss;
         public bool askedForIt;
         public bool youLose;
+        public bool youWin;
 
         public GameObject explosionPrefab;
 
@@ -38,10 +39,15 @@ namespace test
             if (GameController.instance.youLose)
             {
                 StartCoroutine(MenuController.instance.LoadLevelAfterDelay(5));
-                print("Resetting level...");
+                //print("Resetting level...");
                 MenuController.instance.NewLevel = "DungeonPerson";
             }
-
+            if (GameController.instance.youWin)
+            {
+                StartCoroutine(MenuController.instance.LoadLevelAfterDelay(5));
+                print("Resetting level...");
+                MenuController.instance.NewLevel = "Main";
+            }
         }
     }
 

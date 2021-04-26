@@ -105,6 +105,7 @@ namespace test
                 Destroy(poly);
 
             gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            GameController.instance.youWin = true;
 
         }
 

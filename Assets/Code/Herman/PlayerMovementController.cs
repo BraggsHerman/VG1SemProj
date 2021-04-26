@@ -6,11 +6,6 @@ using System;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    public KeyCode keyUp;
-    public KeyCode keyDown;
-    public KeyCode keyLeft;
-    public KeyCode keyRight;
-
 
     public int maxHealth = 5;
     public SpriteRenderer spriteRenderer;

@@ -106,12 +106,12 @@ namespace Sarah
                 if (direction == Direction.Left || direction == Direction.Right)
                 {
                     wallHitList = Physics2D.RaycastAll(transform.position, dir, wallHorizRange);
-                     Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
+                    // Debug.DrawRay(transform.position, dir * wallHorizRange, Color.blue);
                 }
                 else
                 {
                     wallHitList = Physics2D.RaycastAll(transform.position, dir, wallVertRange);
-                     Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
+                    // Debug.DrawRay(transform.position, dir * wallVertRange, Color.blue);
                 }
 
                 foreach (RaycastHit2D wallHit in wallHitList)
@@ -125,6 +125,14 @@ namespace Sarah
                 IdleWalk();
             }
             CheckIfStuck();
+        }
+
+        private void FixedUpdate()
+        {
+            if (isPaused)
+            {
+                return;
+            }
         }
 
         void ChasePlayer()
@@ -340,11 +348,11 @@ namespace Sarah
             RaycastHit2D[] sightHitList3 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
             RaycastHit2D[] sightHitList4 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
             RaycastHit2D[] sightHitList5 = Physics2D.RaycastAll(transform.position, diagonalDir2, sightRange);
-            Debug.DrawRay(transform.position, dir * sightRange, Color.green);
+            /*Debug.DrawRay(transform.position, dir * sightRange, Color.green);
             Debug.DrawRay(transform.position, diagonalDir1 * sightRange/2, Color.green);
             Debug.DrawRay(transform.position, diagonalDir2 * sightRange/2, Color.green);
             Debug.DrawRay(transform.position, diagonalDir3 * sightRange/4, Color.green);
-            Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);
+            Debug.DrawRay(transform.position, diagonalDir4 * sightRange/4, Color.green);*/
 
             foreach (RaycastHit2D sightHit in sightHitList)
             {

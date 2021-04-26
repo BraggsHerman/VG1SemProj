@@ -174,8 +174,9 @@ namespace test
 
            
 
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.P))
             {
+                print("p pressed");
                 MenuController.instance.Show();
             }
         }
@@ -204,6 +205,7 @@ namespace test
                 if (collision.gameObject.tag == "Fire")
                 {
                     TakeDamage(1);
+                    GameObject.FindGameObjectWithTag("Fire").GetComponent<AudioSource>().enabled = true;
                 }
                 else
                 {

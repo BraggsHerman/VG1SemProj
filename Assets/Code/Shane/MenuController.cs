@@ -7,9 +7,18 @@ namespace test
 {
     public class MenuController : MonoBehaviour
     {
+        //Outlets
         public static MenuController instance;
         public float delay = 5;
         public string NewLevel = "DungeonPerson";
+
+        public GameObject levelMenu;
+        public GameObject mainMenu;
+
+        public string level1;
+        public string level2;
+        public string level3;
+        public string level4;
 
         //Methods
         void Awake()
@@ -40,6 +49,7 @@ namespace test
         {
             //Turn off all menus
             mainMenu.SetActive(false);
+            levelMenu.SetActive(false);
 
             //Turn on requested menu
             someMenu.SetActive(true);
@@ -51,15 +61,17 @@ namespace test
             SwitchMenu(mainMenu);
         }
 
+        public void ShowLevelMenu()
+        {
+            SwitchMenu(levelMenu);
+        }
+
         public void Exit()
         {
             SceneManager.LoadScene("Main");
 
         }
 
-
-        //Outlets
-        public GameObject mainMenu;
 
         // Start is called before the first frame update
         void Start()
@@ -78,6 +90,29 @@ namespace test
             yield return new WaitForSeconds(delay);
             
             SceneManager.LoadScene(NewLevel);
+        }
+        public void LoadLevel1()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(level1);
+        }
+
+        public void LoadLevel2()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(level2);
+        }
+
+        public void LoadLevel3()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(level3);
+        }
+
+        public void LoadLevel4()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(level4);
         }
     }
 }

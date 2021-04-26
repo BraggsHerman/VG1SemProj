@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 namespace Sarah
 {
     public class PlayerController : MonoBehaviour
     {
+        
+        public static PlayerController instance;
         
         // Outlets - sibling components (Transform, SpriteRenderer)
         Rigidbody2D _rigidbody2D;
@@ -17,6 +20,7 @@ namespace Sarah
         public Transform[] itemSpawners;
         public GameObject itemPrefab;
         public Image healthBarImage;
+        public Text bottleScoreText;
 
         // Configuration - settings (max health, speed)
         public float speed;
@@ -26,10 +30,15 @@ namespace Sarah
         public bool itemAvailable;
         private int status;
         public float health;
+        public int bottleScore;
+        public bool isPaused;
     
         // Methods
-        
-        // Start is called before the first frame update
+        private void Awake()
+        {
+            instance = this;
+        }
+
         void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -39,19 +48,29 @@ namespace Sarah
             itemAvailable = true;
             status = 0;
             health = maxHealth;
+            bottleScore = 0;
+            isPaused = false;
         }
 
         private void FixedUpdate()
         {
+            if (isPaused)
+            {
+                return;
+            }
+            
             _animator.SetInteger("PrevStatus", status);
             CheckVelocity();
             _animator.SetInteger("Status", status);
         }
-
-
-        // Update is called once per frame
+        
         void Update()
         {
+            if (isPaused)
+            {
+                return;
+            }
+            
             // In future, add something to indicate loss
             if (health <= 0)
             {
@@ -146,11 +165,18 @@ namespace Sarah
         {
             health = Math.Min(health + amount, maxHealth);
             UpdateHealthBar();
+            UpdateBottleScore();
         }
 
         private void UpdateHealthBar()
         {
             healthBarImage.fillAmount = health / maxHealth;
+        }
+
+        void UpdateBottleScore()
+        {
+            ++bottleScore;
+            bottleScoreText.text = ": " + bottleScore;
         }
 
         void Die()

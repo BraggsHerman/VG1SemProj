@@ -798,7 +798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.016, y: 1.041}
+  m_AnchoredPosition: {x: -0.016, y: 0.28}
   m_SizeDelta: {x: 165.0501, y: 110.0334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464043373
@@ -2263,7 +2263,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -9836,32 +9836,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: -0.15625
+      value: 0.063161135
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 1.03125
+      value: 0.11444339
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: -0.25
+      value: -0.18647432
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: 0.90625
+      value: 0.10436845
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -0.25
+      value: -0.18955135
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: 0
+      value: 0.11034083
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 0.25
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
@@ -9873,7 +9877,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
-      value: 1.03125
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 0.24999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422986917549087617, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: 0.11444336
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087677, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: m_Name
@@ -9885,7 +9897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7422986917549087678, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
       propertyPath: speed
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
@@ -10126,7 +10138,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &1842469075
 GameObject:
@@ -10432,7 +10444,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -17550,7 +17562,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &2123773613
 GameObject:

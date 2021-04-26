@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public KeyCode keyUp;
+    public KeyCode keyDown;
+    public KeyCode keyLeft;
+    public KeyCode keyRight;
+
+
     public int maxHealth = 5;
     public SpriteRenderer spriteRenderer;
 
@@ -41,19 +48,23 @@ public class PlayerMovementController : MonoBehaviour
     {
         float movementSpeed = rb.velocity.magnitude;
         anim.SetFloat("Speed", movementSpeed);
+        Debug.Log(movementSpeed);
+
         if(movementSpeed > 0.1f) 
         {
-            anim.SetFloat("MvementX", rb.velocity.x);
-            anim.SetFloat("MovementY", rb.velocity.y);
+            anim.SetFloat("movementX", rb.velocity.x);
+            anim.SetFloat("movementY", rb.velocity.y);
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             anim.SetTrigger("Attack");
         }
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-       // Debug.Log(horizontal);
+
+        // Debug.Log(horizontal);
 
         if (isInvincible) 
         {
@@ -82,6 +93,7 @@ public class PlayerMovementController : MonoBehaviour
 
 
     }
+
 
     private void FixedUpdate()
     {

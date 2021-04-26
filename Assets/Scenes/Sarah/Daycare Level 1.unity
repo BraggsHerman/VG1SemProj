@@ -13407,6 +13407,8 @@ MonoBehaviour:
   highScoreText: {fileID: 641235332}
   bestTimeText: {fileID: 1220511870}
   babyCrySound: {fileID: 8300000, guid: 573af5fee82ee419384119e6c28b6706, type: 3}
+  _GameController: {fileID: 1665515134}
+  _PlayerController: {fileID: 2097270255}
   nextLevel: SpaceCruiseLevel
   welcomeScene: Main
 --- !u!82 &1277526490
@@ -19345,6 +19347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2051136814}
   levelMenu: {fileID: 2078214399}
+  _GameController: {fileID: 1665515134}
   level1: Daycare Level 1
   level2: SpaceCruiseLevel
   level3: HighSchool
@@ -20123,6 +20126,7 @@ MonoBehaviour:
   - {fileID: 1091290770}
   - {fileID: 1487565561}
   - {fileID: 979543350}
+  _PlayerController: {fileID: 2097270255}
   totalSecs: 0
   endSceneDelay: 0
   isPaused: 0

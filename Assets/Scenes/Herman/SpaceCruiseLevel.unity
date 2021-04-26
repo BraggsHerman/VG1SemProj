@@ -2742,7 +2742,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131879663}
-  m_LocalRotation: {x: 0.051379293, y: -0.06594647, z: 0.0034002054, w: 0.9964937}
+  m_LocalRotation: {x: 0.07472116, y: -0.1271896, z: 0.0096093295, w: 0.98901325}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10817,8 +10817,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663086579}
-  m_LocalRotation: {x: 0.051379293, y: -0.06594647, z: 0.0034002054, w: 0.9964937}
-  m_LocalPosition: {x: 1.3293924, y: 1.0430467, z: -10}
+  m_LocalRotation: {x: 0.07472116, y: -0.1271896, z: 0.0096093295, w: 0.98901325}
+  m_LocalPosition: {x: 2.615304, y: 1.5708115, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11190,6 +11190,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7422986917549087616, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
   m_PrefabInstance: {fileID: 1738412348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1738412350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7422986917549087678, guid: 8068c727a107e0d488b0f7d44eb44109, type: 3}
+  m_PrefabInstance: {fileID: 1738412348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66f38012444b41cf9bb20f1ca57c956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1743856872
 GameObject:
   m_ObjectHideFlags: 0
@@ -19062,6 +19073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 1911543081}
   levelMenu: {fileID: 835929252}
+  player: {fileID: 1738412350}
   level1: Daycare Level 1
   level2: SpaceCruiseLevel
   level3: HighSchool

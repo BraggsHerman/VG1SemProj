@@ -18,6 +18,8 @@ namespace Sarah
         public Text bestTimeText;
         private AudioSource _audioSource;
         public AudioClip babyCrySound;
+        public GameController _GameController;
+        public PlayerController _PlayerController;
         
         // Configuration
         public string nextLevel;
@@ -36,16 +38,16 @@ namespace Sarah
             gameObject.SetActive(true);
             _audioSource.PlayOneShot(babyCrySound);
             Time.timeScale = 0;
-            GameController.instance.PauseGame();
+            _GameController.PauseGame();
             UpdateStats();
             ShowScore();
         }
 
-        public void Hide()
+        private void Hide()
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            GameController.instance.ResumeGame();
+            _GameController.ResumeGame();
         }
 
         public void PlayAgain()
@@ -67,19 +69,19 @@ namespace Sarah
         void UpdateStats()
         {
             int bestTime = PlayerPrefs.GetInt("Level 1 Best Time Secs");
-            int myTime = GameController.instance.totalSecs;
+            int myTime = _GameController.totalSecs;
             if (bestTime == 0)
             {
                 PlayerPrefs.SetInt("Level 1 Best Time Secs", myTime);
-                PlayerPrefs.SetString("Level 1 Best Time", GameController.instance.timeString);
+                PlayerPrefs.SetString("Level 1 Best Time", _GameController.timeString);
             }
             if (bestTime < myTime)
             {
                 PlayerPrefs.SetInt("Level 1 Best Time Secs", myTime);
-                PlayerPrefs.SetString("Level 1 Best Time", GameController.instance.timeString);
+                PlayerPrefs.SetString("Level 1 Best Time", _GameController.timeString);
             }
             int highScore = PlayerPrefs.GetInt("Level 1 High Score");
-            int score = PlayerController.instance.bottleScore;
+            int score = _PlayerController.bottleScore;
             if (score > highScore)
             {
                 PlayerPrefs.SetInt("Level 1 High Score", score);
@@ -88,8 +90,8 @@ namespace Sarah
         
         void ShowScore()
         {
-            scoreText.text = PlayerController.instance.bottleScore.ToString();
-            timeText.text = GameController.instance.timeString;
+            scoreText.text = _PlayerController.bottleScore.ToString();
+            timeText.text = _GameController.timeString;
             highScoreText.text = PlayerPrefs.GetInt("Level 1 High Score").ToString();
             bestTimeText.text = PlayerPrefs.GetString("Level 1 Best Time");
         }

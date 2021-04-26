@@ -12,6 +12,7 @@ namespace Sarah
         // Outlets
         public GameObject mainMenu;
         public GameObject levelMenu;
+        public GameController _GameController;
 
         // Configuration
         public string level1;
@@ -31,14 +32,14 @@ namespace Sarah
             ShowMainMenu();
             gameObject.SetActive(true);
             Time.timeScale = 0;
-            GameController.instance.PauseGame();
+            _GameController.PauseGame();
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            GameController.instance.ResumeGame();
+            _GameController.ResumeGame();
         }
 
         void SwitchMenu(GameObject someMenu)

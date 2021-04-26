@@ -13,6 +13,7 @@ namespace Sarah
         // Outlets
         public Text textTimer;
         public Chaser[] chasers;
+        public PlayerController _PlayerController;
 
         // Configuration
         private float lastTime;
@@ -87,7 +88,7 @@ namespace Sarah
         {
             pauseTime = lastTime + Time.deltaTime;
             isPaused = true;
-            PlayerController.instance.isPaused = true;
+            _PlayerController.isPaused = true;
             foreach (Chaser chaser in chasers)
             {
                 chaser.isPaused = true;
@@ -98,7 +99,7 @@ namespace Sarah
         {
             lastTime = pauseTime;
             isPaused = false;
-            PlayerController.instance.isPaused = false;
+            _PlayerController.isPaused = false;
             foreach (Chaser chaser in chasers)
             {
                 chaser.isPaused = false;

@@ -55,6 +55,19 @@ namespace HighSchool
             {
                 Destroy(gameObject);
             }
+
+           
+
+            if (other.gameObject.GetComponent<ChaserController>())
+            {
+                Destroy(gameObject);
+            }
+
+            if (other.gameObject.GetComponent<HealthObject>())
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 }

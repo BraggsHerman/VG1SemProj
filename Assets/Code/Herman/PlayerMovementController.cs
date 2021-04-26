@@ -105,16 +105,14 @@ public class PlayerMovementController : MonoBehaviour
                   
                 isInvincible = true;
                 invincibleTimer = timeInvincible;
-            }
-            ;
-           
-                
-
+            }   
             
         } 
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
+
+
     }
 
 

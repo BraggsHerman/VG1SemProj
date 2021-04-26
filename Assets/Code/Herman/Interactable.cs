@@ -46,16 +46,12 @@ public class Interactable : MonoBehaviour
             canvas.SetActive(true);
             cluesFound++;
         }
-        if(cluesFound >= 3)
+        if(cluesFound >= 2)
         {
-            
+            SceneManager.LoadScene("SpaceCruiseWinScreen");
         }
 
 
     }
 
-    public void BringCanvas()
-    {
-        
-    }
 }

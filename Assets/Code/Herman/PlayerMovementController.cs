@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
-public class PlayerMovementController : MonoBehaviour
+    public class PlayerMovementController : MonoBehaviour
 {
 
     public int maxHealth = 5;
@@ -23,6 +23,8 @@ public class PlayerMovementController : MonoBehaviour
     float invincibleTimer;
 
     public Animator anim;
+
+    public bool isPaused;
     
 
 
@@ -36,11 +38,24 @@ public class PlayerMovementController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        isPaused = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Show menu
+        if (Input.GetKey(KeyCode.P))
+        {
+            HermanMenuController.instance.Show();
+        }
+
+        if (isPaused)
+        {
+            return;
+        }
+        
         float movementSpeed = rb.velocity.magnitude;
         anim.SetFloat("Speed", movementSpeed);
         Debug.Log(movementSpeed);
@@ -92,6 +107,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isPaused)
+        {
+            return;
+        }
+        
         Vector2 position = transform.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
@@ -121,8 +141,6 @@ public class PlayerMovementController : MonoBehaviour
 
 
     }
-
-
-
-
 }
+
+

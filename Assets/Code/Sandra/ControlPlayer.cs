@@ -16,8 +16,8 @@ namespace HighSchool
         public Image imageHealthBar;
         public static ControlPlayer instance;
         public int jumpsLeft;
-        
-      
+
+
         //configuration
         //public float moveSpeed;
 
@@ -25,6 +25,7 @@ namespace HighSchool
 
         public float healthMax = 100f;
         public float health = 100f;
+        public bool isPaused;
 
         /*
         void Awake()
@@ -37,11 +38,23 @@ namespace HighSchool
         void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            isPaused = false;
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (isPaused)
+            {
+                return;
+            }
+            
+            // Show menu
+            if (Input.GetKey(KeyCode.P))
+            {
+                MenuController.instance.Show();
+            }
+            
             if (health > 0)
             {
                 if (Input.GetKey(KeyCode.LeftArrow))

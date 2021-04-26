@@ -12,12 +12,18 @@ namespace Sarah
         
         // Outlets
         public Text textTimer;
-        
+        public Chaser[] chasers;
+
         // Configuration
-        private float startTime;
+        private float lastTime;
         private int nextTime;
         private int minutes;
         private int seconds;
+        public int endSceneDelay;
+        
+        // State Tracking
+        private bool gameOver;
+        public bool isPaused;
 
         void Awake()
         {
@@ -27,19 +33,31 @@ namespace Sarah
         void Start()
         {
             textTimer.text = "0:00";
-            startTime = Time.deltaTime;
+            lastTime = 0;
             nextTime = 1;
+            isPaused = false;
         }
         
         void Update()
         {
-
-            if (Time.deltaTime - startTime > nextTime)
+            if (isPaused)
+            {
+                return;
+            }
+            
+            lastTime += Time.deltaTime;
+            if (lastTime > nextTime)
             {
                 ++seconds;
                 ++nextTime;
                 print(nextTime);
                 UpdateTime();
+            }
+            
+            if (gameOver)
+            {
+                StartCoroutine(MenuController.instance.LoadLevelAfterDelay(endSceneDelay));
+                print("Resetting level...");
             }
         }
 
@@ -58,6 +76,26 @@ namespace Sarah
             }
 
             textTimer.text = minutes + ":" + secStr;
+        }
+
+        void PauseGame()
+        {
+            isPaused = true;
+            PlayerController.instance.isPaused = true;
+            foreach (Chaser chaser in chasers)
+            {
+                chaser.isPaused = true;
+            }
+        }
+
+        void ResumeGame()
+        {
+            isPaused = false;
+            PlayerController.instance.isPaused = false;
+            foreach (Chaser chaser in chasers)
+            {
+                chaser.isPaused = false;
+            }
         }
     }
 }

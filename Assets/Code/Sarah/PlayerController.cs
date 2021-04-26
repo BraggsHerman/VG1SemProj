@@ -11,6 +11,8 @@ namespace Sarah
     public class PlayerController : MonoBehaviour
     {
         
+        public static PlayerController instance;
+        
         // Outlets - sibling components (Transform, SpriteRenderer)
         Rigidbody2D _rigidbody2D;
         private SpriteRenderer sprite;
@@ -29,8 +31,14 @@ namespace Sarah
         private int status;
         public float health;
         public int bottleScore;
+        public bool isPaused;
     
         // Methods
+        private void Awake()
+        {
+            instance = this;
+        }
+
         void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -41,10 +49,16 @@ namespace Sarah
             status = 0;
             health = maxHealth;
             bottleScore = 0;
+            isPaused = false;
         }
 
         private void FixedUpdate()
         {
+            if (isPaused)
+            {
+                return;
+            }
+            
             _animator.SetInteger("PrevStatus", status);
             CheckVelocity();
             _animator.SetInteger("Status", status);
@@ -52,6 +66,11 @@ namespace Sarah
         
         void Update()
         {
+            if (isPaused)
+            {
+                return;
+            }
+            
             // In future, add something to indicate loss
             if (health <= 0)
             {

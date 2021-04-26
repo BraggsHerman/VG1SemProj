@@ -18,7 +18,7 @@ namespace Sarah
         private AudioSource _audioSource;
         public AudioClip seePlayerSound;
         public AudioClip biteSound;
-        
+
         // Configuration
         enum Direction
         {
@@ -48,6 +48,7 @@ namespace Sarah
         private Vector2 dir;
         private bool readyToAttack;
         private int status;
+        public bool isPaused;
 
         //Methods
         void Start()
@@ -89,10 +90,15 @@ namespace Sarah
             stuckCounter = 0;
             readyToAttack = true;
             firstSpotPlayer = true;
+            isPaused = false;
         }
         
         void Update()
         {
+            if (isPaused)
+            {
+                return;
+            }
             if (!CheckForPlayerInRange())
             {
                 RaycastHit2D[] wallHitList = { };

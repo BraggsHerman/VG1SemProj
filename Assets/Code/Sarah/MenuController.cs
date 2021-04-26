@@ -15,7 +15,7 @@ namespace Sarah
 
         // Configuration
         public float delay = 6;
-        public string nextLevel = "DungeonPerson";
+        public string nextLevel = "SpaceCruiseLevel";
         public string level1;
         public string level2;
         public string level3;

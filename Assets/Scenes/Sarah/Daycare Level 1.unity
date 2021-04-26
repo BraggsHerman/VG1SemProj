@@ -576,7 +576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 3
+  m_Text: Dream 3
 --- !u!222 &97881988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Select Level
+  m_Text: Select Dream
 --- !u!222 &124319670
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1417,7 +1417,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level Select
+  m_Text: Switch Dreams
 --- !u!222 &343149258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19988,7 +19988,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 2
+  m_Text: Dream 2
 --- !u!222 &1655006410
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20260,7 +20260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 4
+  m_Text: Dream 4
 --- !u!222 &1759420130
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20472,7 +20472,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: Next Dream
 --- !u!222 &1809453146
 CanvasRenderer:
   m_ObjectHideFlags: 0

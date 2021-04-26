@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Sarah
+namespace HighSchool
 {
     public class MenuController : MonoBehaviour
     {
@@ -12,6 +12,7 @@ namespace Sarah
         // Outlets
         public GameObject mainMenu;
         public GameObject levelMenu;
+        public ControlPlayer player;
 
         // Configuration
         public string level1;
@@ -31,14 +32,14 @@ namespace Sarah
             ShowMainMenu();
             gameObject.SetActive(true);
             Time.timeScale = 0;
-            GameController.instance.PauseGame();
+            player.isPaused = true;
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            GameController.instance.ResumeGame();
+            player.isPaused = false;
         }
 
         void SwitchMenu(GameObject someMenu)
@@ -65,12 +66,6 @@ namespace Sarah
         {
             Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        public void ResetScore()
-        {
-            PlayerPrefs.DeleteKey("Level 1 High Score");
-            PlayerController.instance.bottleScore = 0;
         }
 
         public void LoadLevel1()
